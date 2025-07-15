@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import WebcamCapture from './components/WebcamCapture';
 import StripCanvasPreview from './components/StripCanvasPreview';
-import FilterBarWithPreview from './components/FilterBarWithPreview'; // 👈 updated component
+import FilterBarWithPreview from './components/FilterBarWithPreview';
 import TextOverlayInput from './components/TextOverlayInput';
 import StickerPanel from './components/StickerPanel';
 import { createStripWithText } from './utils/imageUtils';
@@ -44,7 +44,7 @@ const App = () => {
     <div className="relative min-h-screen overflow-y-auto">
       {/* Background */}
       <div
-        className="fixed top-0 left-0 w-full h-full bg-center bg-no-repeat bg-[length:100%_auto] -z-10 transition-all duration-700 ease-in-out"
+        className="fixed top-0 left-0 w-full h-full bg-center bg-no-repeat bg-cover -z-10 transition-all duration-700 ease-in-out"
         style={{
           backgroundImage: THEMES[theme].background
             ? `url('${THEMES[theme].background}')`
@@ -55,12 +55,13 @@ const App = () => {
       <div className="fixed inset-0 bg-white/10 -z-10" />
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col items-center justify-start min-h-screen p-6 space-y-6">
+      <div className="relative z-10 w-full max-w-sm mx-auto px-4 py-6 flex flex-col items-center gap-6 text-white">
+        {/* Theme Selector */}
         <select
           value={theme}
           onChange={(e) => setTheme(e.target.value)}
           disabled={boothStarted}
-          className={`bg-white rounded px-3 py-1 shadow-md font-semibold text-teal-700 transition-opacity duration-700 ease-in-out ${
+          className={`w-full bg-white rounded px-4 py-2 shadow-md font-semibold text-teal-700 ${
             boothStarted ? 'opacity-0 pointer-events-none' : 'opacity-100'
           }`}
         >
@@ -72,7 +73,7 @@ const App = () => {
         </select>
 
         <h1
-          className="text-5xl text-black font-bold"
+          className="text-4xl sm:text-5xl text-black font-bold text-center"
           style={{ fontFamily: THEMES[theme].font }}
         >
           📸 Photobooth
@@ -97,7 +98,6 @@ const App = () => {
               stickers={stickers}
               setStickers={setStickers}
               filter={filter}
-
             />
             <StickerPanel />
           </>
@@ -107,15 +107,17 @@ const App = () => {
           <>
             <TextOverlayInput value={customText} onChange={setCustomText} />
             {theme === 'none' && (
-              <FilterBarWithPreview
-                selected={filter}
-                onChange={setFilter}
-                images={images}
-              />
+              <div className="flex justify-center">
+                <FilterBarWithPreview
+                  selected={filter}
+                  onChange={setFilter}
+                  images={images}
+                />
+              </div>
             )}
             <button
               onClick={handleDownload}
-              className="mt-4 bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-6 rounded-full shadow-lg"
+              className="w-full bg-teal-500 hover:bg-teal-600 text-white font-bold py-3 rounded-lg shadow-lg"
             >
               💾 Download Strip
             </button>
