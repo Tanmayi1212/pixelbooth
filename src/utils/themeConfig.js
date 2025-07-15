@@ -1,0 +1,42 @@
+export const THEMES = {
+  retro: {
+    name: 'Retro',
+    background: '/assets/retro-bg.jpg',
+    filter: 'sepia(0.3) contrast(1.2)',
+    font: 'Pacifico, cursive',
+    canvasFilter: 'sepia(0.6)',
+    liveFilter: 'sepia(0.6) contrast(1.2)',
+  },
+  neon: {
+    name: 'Neon',
+    background: '/assets/neon-bg.jpg',
+    filter: 'contrast(1.1) brightness(1.05)',
+    font: 'Orbitron, sans-serif',
+    canvasFilter: 'contrast(1.1) brightness(1.05)',
+    liveFilter: 'contrast(1.1) brightness(1.05)',
+  },
+  modern: {
+    name: 'Modern',
+    background: '/assets/modern-bg.jpg',
+    filter: 'grayscale(0.4) brightness(1.1) contrast(1.2)',
+    font: 'Inter, sans-serif',
+    canvasFilter: 'grayscale(0.4) brightness(1.1) contrast(1.2)',
+    liveFilter: 'grayscale(0.4) brightness(1.1) contrast(1.2)',
+  },
+  holiday: {
+    name: 'Holiday',
+    background: '/assets/holiday-bg.jpg',
+    filter: 'brightness(1.2) saturate(1.5) hue-rotate(30deg)',
+    font: 'Cabin Sketch, cursive',
+    canvasFilter: 'brightness(1.2) saturate(1.5) hue-rotate(30deg)',
+    liveFilter: 'brightness(1.2) saturate(1.5) hue-rotate(30deg)',
+  },
+  none: {
+    name: 'None (Custom)',
+    background: '/assets/none-bg.jpg',
+    filter: '',
+    font: 'Fredoka, sans-serif',
+    canvasFilter: '',
+    liveFilter: '',
+  },
+};
